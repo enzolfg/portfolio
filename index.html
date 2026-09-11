@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enzo Gonçalves — dev em formação</title>
+<meta name="description" content="Portfólio de Enzo Leonardo Ferreira Gonçalves, estudante de Ciência da Computação explorando front-end, back-end, dados e cibersegurança.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2314213D'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='15' fill='%23E3B34A' text-anchor='middle'%3EEG%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14213D;
+    --paper:#EEF1F4;
+    --panel:#E4E8EC;
+    --line:#CBD2D9;
+    --muted:#5B6472;
+    --amber-deep:#A6721E;
+    --amber-bright:#E3B34A;
+    --teal:#2F6F68;
+    --on-ink:#E7EAEE;
+    --font-mono:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --font-sans:'IBM Plex Sans', -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:var(--teal);text-decoration-color:var(--line);text-underline-offset:3px;}
+  a:hover{text-decoration-color:var(--teal);}
+  a:focus-visible, button:focus-visible, label:focus-visible, input:focus-visible{
+    outline:2px solid var(--amber-deep);
+    outline-offset:3px;
+  }
+
+  .wrap{max-width:880px;margin:0 auto;padding:0 1.5rem;}
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:10;
+    background:rgba(238,241,244,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  header.nav .wrap{
+    display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;
+    align-items:center;justify-content:space-between;
+    padding-top:.9rem;padding-bottom:.9rem;
+  }
+  .brand{
+    font-family:var(--font-mono);font-weight:600;font-size:.95rem;
+    color:var(--ink);text-decoration:none;letter-spacing:.02em;
+  }
+  .brand span{color:var(--amber-deep);}
+  nav.links{display:flex;gap:1.25rem;flex-wrap:wrap;font-size:.92rem;}
+  nav.links a{color:var(--muted);text-decoration:none;}
+  nav.links a:hover{color:var(--ink);}
+
+  section{scroll-margin-top:4.5rem;}
+
+  /* ---------- hero ---------- */
+  .hero{padding:3.5rem 0 3rem;}
+  .hero .grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;
+  }
+  .term{
+    background:var(--ink);color:var(--on-ink);border-radius:8px;
+    padding:1.25rem 1.4rem;font-family:var(--font-mono);font-size:.9rem;
+    box-shadow:0 1px 0 rgba(0,0,0,0.05);
+    overflow:hidden;
+  }
+  .term .dots{display:flex;gap:.4rem;margin-bottom:.9rem;}
+  .term .dots span{width:9px;height:9px;border-radius:50%;background:#3A4A6B;display:block;}
+  .term .line{margin:0 0 .55rem 0;opacity:0;transform:translateY(4px);
+    animation:reveal .45s ease-out forwards;}
+  .term .line:nth-child(2){animation-delay:.15s;}
+  .term .line:nth-child(3){animation-delay:.30s;}
+  .term .line:nth-child(4){animation-delay:.45s;}
+  .term .line:nth-child(5){animation-delay:.60s;}
+  .term .line:nth-child(6){animation-delay:.75s;}
+  .term .line:nth-child(7){animation-delay:.90s;}
+  .term .prompt{color:var(--amber-bright);}
+  .term .out{color:var(--on-ink);}
+  .term .muted2{color:#8892A6;}
+  @keyframes reveal{to{opacity:1;transform:translateY(0);}}
+
+  .hero h1{
+    font-family:var(--font-mono);font-size:1.9rem;font-weight:600;
+    margin:0 0 .6rem;line-height:1.3;
+  }
+  .hero p.tag{margin:0 0 1rem;color:var(--muted);font-size:1.05rem;max-width:34ch;}
+  .hero p.sub{margin:0;font-size:.98rem;max-width:38ch;}
+
+  /* ---------- sections ---------- */
+  .section{padding:2.75rem 0;border-top:1px solid var(--line);}
+  .section h2{
+    font-family:var(--font-mono);font-weight:500;font-size:1.35rem;
+    margin:0 0 1.25rem;
+  }
+  .section h2 .fn{color:var(--amber-deep);}
+  .section > .wrap > p{max-width:42rem;}
+
+  /* ---------- sobre ---------- */
+  #sobre p{max-width:42rem;}
+
+  /* ---------- trilhas (tabs) ---------- */
+  .tabs input{position:absolute;opacity:0;pointer-events:none;}
+  .tab-list{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.25rem;}
+  .tab-list label{
+    font-family:var(--font-mono);font-size:.85rem;
+    padding:.45rem .85rem;border:1px solid var(--line);border-radius:999px;
+    cursor:pointer;color:var(--muted);background:var(--panel);
+    transition:color .15s, border-color .15s;
+  }
+  .tab-list label:hover{color:var(--ink);}
+  .panel{display:none;}
+  .panel ul{margin:0;padding-left:1.1rem;max-width:42rem;}
+  .panel li{margin-bottom:.5rem;}
+  .panel li .note{color:var(--muted);font-size:.9rem;}
+
+  #tab-fund:checked ~ .tab-list label[for="tab-fund"],
+  #tab-front:checked ~ .tab-list label[for="tab-front"],
+  #tab-back:checked ~ .tab-list label[for="tab-back"],
+  #tab-exp:checked ~ .tab-list label[for="tab-exp"]{
+    border-color:var(--teal);color:var(--ink);background:var(--paper);
+  }
+  #tab-fund:checked ~ .tab-panels .panel-fund,
+  #tab-front:checked ~ .tab-panels .panel-front,
+  #tab-back:checked ~ .tab-panels .panel-back,
+  #tab-exp:checked ~ .tab-panels .panel-exp{display:block;}
+
+  /* ---------- projetos ---------- */
+  .proj{
+    padding:1.1rem 0;border-bottom:1px solid var(--line);
+    display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start;
+  }
+  .proj:last-child{border-bottom:none;}
+  .proj h3{margin:0 0 .3rem;font-size:1.05rem;font-weight:600;}
+  .proj p{margin:0 0 .4rem;max-width:38rem;color:var(--muted);}
+  .proj .tech{font-family:var(--font-mono);font-size:.78rem;color:var(--teal);}
+  .proj .status{font-family:var(--font-mono);font-size:.78rem;color:var(--muted);}
+  .proj a.repo{font-size:.9rem;white-space:nowrap;}
+
+  /* ---------- contato ---------- */
+  .contact-list{list-style:none;margin:0;padding:0;}
+  .contact-list li{margin-bottom:.6rem;font-size:1.02rem;}
+  .contact-list .k{color:var(--muted);font-family:var(--font-mono);font-size:.82rem;display:inline-block;min-width:6.5rem;}
+
+  footer{padding:2rem 0 3rem;color:var(--muted);font-size:.85rem;}
+
+  @media (max-width:760px){
+    .hero .grid{grid-template-columns:1fr;}
+    .hero h1{font-size:1.6rem;}
+    .proj{grid-template-columns:1fr;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .term .line{animation:none;opacity:1;transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#topo">enzo<span>.</span>dev</a>
+    <nav class="links">
+      <a href="#sobre">sobre</a>
+      <a href="#trilhas">trilhas</a>
+      <a href="#projetos">projetos</a>
+      <a href="#contato">contato</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section id="topo" class="hero">
+    <div class="wrap grid">
+      <div class="term" aria-hidden="false">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <p class="line"><span class="prompt">$</span> whoami</p>
+        <p class="line out">enzo, dev em formação</p>
+        <p class="line"><span class="prompt">$</span> pwd</p>
+        <p class="line out">~/ciencia-da-computacao/ifpr-pinhais</p>
+        <p class="line"><span class="prompt">$</span> ls trilhas/</p>
+        <p class="line out">front-end&nbsp;&nbsp;back-end&nbsp;&nbsp;dados&nbsp;&nbsp;<span class="muted2"># segurança (em breve)</span></p>
+      </div>
+      <div>
+        <h1>Enzo Leonardo Ferreira Gonçalves</h1>
+        <p class="tag">Estudante de Ciência da Computação, ainda testando qual trilha do desenvolvimento é a minha.</p>
+        <p class="sub">Base forte em C++, boa vivência com front-end e banco de dados, primeiros passos em back-end — e curiosidade crescente por cibersegurança.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre" class="section">
+    <div class="wrap">
+      <h2>sobre<span class="fn">()</span></h2>
+      <p>
+        Curso Bacharelado em Ciência da Computação no Instituto Federal do Paraná (IFPR),
+        campus Pinhais. Comecei programando em C++ e, a partir dele, fui me aproximando de
+        front-end (HTML e CSS), banco de dados e, mais recentemente, Java e JavaScript.
+      </p>
+      <p>
+        Hoje estou no momento de testar terrenos: quero descobrir, na prática, qual área do
+        desenvolvimento faz mais sentido pra mim — e a cibersegurança é uma das frentes que
+        tenho vontade de explorar melhor nos próximos passos.
+      </p>
+    </div>
+  </section>
+
+  <section id="trilhas" class="section">
+    <div class="wrap tabs">
+      <h2>trilhas<span class="fn">()</span></h2>
+
+      <input type="radio" name="trilha" id="tab-fund" checked>
+      <input type="radio" name="trilha" id="tab-front">
+      <input type="radio" name="trilha" id="tab-back">
+      <input type="radio" name="trilha" id="tab-exp">
+
+      <div class="tab-list">
+        <label for="tab-fund">fundamentos</label>
+        <label for="tab-front">front-end</label>
+        <label for="tab-back">back-end &amp; dados</label>
+        <label for="tab-exp">explorando</label>
+      </div>
+
+      <div class="tab-panels">
+        <div class="panel panel-fund">
+          <ul>
+            <li>C++ — minha linguagem mais forte, uso no dia a dia</li>
+            <li>Lógica de programação e estruturas de dados</li>
+            <li>Alocação de memória em C++ <span class="note">(estudando agora)</span></li>
+            <li>Git &amp; GitHub para versionamento</li>
+          </ul>
+        </div>
+        <div class="panel panel-front">
+          <ul>
+            <li>HTML &amp; CSS — boa vivência prática</li>
+            <li>JavaScript <span class="note">(estudando agora)</span></li>
+          </ul>
+        </div>
+        <div class="panel panel-back">
+          <ul>
+            <li>Java — primeiros passos no back-end</li>
+            <li>PHP</li>
+            <li>SQL &amp; MySQL</li>
+          </ul>
+        </div>
+        <div class="panel panel-exp">
+          <ul>
+            <li>Cibersegurança <span class="note">— área que quero entender melhor</span></li>
+            <li>Ainda decidindo entre front, back e dados como foco principal</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projetos" class="section">
+    <div class="wrap">
+      <h2>projetos<span class="fn">()</span></h2>
+
+      <div class="proj">
+        <div>
+          <h3>Classificador kNN</h3>
+          <p>Implementação do algoritmo k-Nearest Neighbors para classificar produtos a partir de dois atributos (durabilidade e qualidade), com escolha entre distância Euclidiana e Manhattan.</p>
+          <span class="tech">C++</span>
+        </div>
+        <a class="repo" href="https://github.com/enzolfg/Classificador_kNN" target="_blank" rel="noopener">Repositório no GitHub</a>
+      </div>
+
+      <div class="proj">
+        <div>
+          <h3>To-Do List</h3>
+          <p>Aplicação de linha de comando para gerenciamento de tarefas, escrita em Bash e executada em ambiente Linux.</p>
+          <span class="tech">Shell Script</span>
+        </div>
+        <a class="repo" href="https://github.com/enzolfg/To-do_List" target="_blank" rel="noopener">Repositório no GitHub</a>
+      </div>
+
+      <div class="proj">
+        <div>
+          <h3>Sistema de apoio a Hackathon</h3>
+          <p>Projeto acadêmico em andamento, desenvolvido em disciplina da faculdade, para organizar um sistema de apoio a um hackathon.</p>
+          <span class="status">em andamento</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" class="section">
+    <div class="wrap">
+      <h2>contato<span class="fn">()</span></h2>
+      <ul class="contact-list">
+        <li><span class="k">email</span><a href="mailto:enzo.leonardo.fg@gmail.com">enzo.leonardo.fg@gmail.com</a></li>
+        <li><span class="k">linkedin</span><a href="https://www.linkedin.com/in/enzo-leonardo-ferreira-gonçalves-a5483530b/" target="_blank" rel="noopener">in/enzo-leonardo-ferreira-gonçalves</a></li>
+        <li><span class="k">github</span><a href="https://github.com/enzolfg" target="_blank" rel="noopener">github.com/enzolfg</a></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Enzo Leonardo Ferreira Gonçalves · Curitiba, PR — portfólio em construção, assim como minha trilha.
+  </div>
+</footer>
+
+</body>
+</html>
